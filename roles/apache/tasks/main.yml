@@ -1,0 +1,27 @@
+---
+# tasks file for apache
+- name: Install pkg
+  yum:
+    name: "{{item}}"
+    state: present
+  loop: "{{pkgs}}"
+
+- name: Service
+  service:
+    name: "{{item}}"
+    state: started
+    enabled: yes
+  loop: "{{pkgs}}"
+
+- ansible.posix.firewalld:
+    immediate: true
+    service: "{{item}}"
+    permanent: true
+    state: enabled
+  loop: "{{svc}}"
+
+- template:
+    src: "index.html.j2"
+    dest: "/var/www/html/index.html"
+
+

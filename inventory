@@ -1,0 +1,15 @@
+[test]
+slave1
+
+[dev]
+slave1
+
+
+[qa]
+slave1
+slave2
+
+
+[prod]
+slave3
+

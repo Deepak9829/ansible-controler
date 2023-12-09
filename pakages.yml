@@ -1,0 +1,27 @@
+- hosts: all
+  become: true
+  vars:
+    pkgs:
+     - php
+     - mariadb
+  tasks:
+  - debug:
+      var: inventory_hostname
+  - name: Download pkgs
+    yum: 
+      name: "{{item}}"
+      state: present
+    loop: "{{pkgs}}"
+    when: inventory_hostname in groups["qa"] 
+
+  - name: Download pkgs
+    yum:
+      name: "@RPM Development Tools"
+      state: latest
+    when: inventory_hostname in groups["qa"]
+
+  - name: Updates all packages with latest
+    yum:
+     name: "*"
+     state: latest
+    when: inventory_hostname in groups["qa"]

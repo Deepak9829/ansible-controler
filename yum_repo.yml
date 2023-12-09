@@ -1,0 +1,19 @@
+- hosts: test
+  become_user: root
+  tasks:
+  - name: configure yum repo
+    yum_repository:
+      name: EX294_BASE
+      description: EX294 base software
+      baseurl: file:///dvd/BaseOS
+      gpgcheck: no
+      enabled: yes
+
+  - name: configure yum repo
+    yum_repository:
+      name: EX294_STREAM
+      description: EX294 stream software
+      baseurl: file:///dvd/AppStream
+      gpgcheck: no
+      enabled: yes
+

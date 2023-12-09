@@ -1,0 +1,22 @@
+- hosts: all 
+  become: true
+  tasks:
+  - block:
+    - name: generate hardware report
+      template:
+        src: hwreport.j2
+        dest: /root/hwreport.txt
+      register: hwreport
+
+    rescue: 
+    - name: debug
+      debug:
+        var: hwreport
+
+    - name: generate report on missing the report
+      template:
+        src: hwreport2.j2
+        dest: /root/hwreport.txt
+
+
+

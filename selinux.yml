@@ -1,0 +1,9 @@
+- hosts: all
+  become: true
+  vars:
+    - selinux_policy: targeted
+    - selinux_state: enforcing
+
+  roles:
+    - role: rhel-system-roles-selinux
+     

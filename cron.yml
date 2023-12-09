@@ -1,0 +1,8 @@
+- hosts: all
+  become: true
+  tasks:
+  - cron:
+      name: "My crons job"
+      minute: "*/2"
+      user: apache
+      job: "logger EX294 in progress"

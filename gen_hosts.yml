@@ -1,0 +1,11 @@
+- hosts: all
+  become: true
+  tasks: []
+
+- hosts: qa
+  become: true
+  tasks:
+  - template: 
+        src: "/home/admin/ansible/hosts.j2"
+        dest: "/etc/myhosts"
+
